@@ -30,14 +30,14 @@ $simple_spc = $_POST["simple_spc"];
 # POSTING DATA TO INTERNAL DATABASE VIA PDO (LOGIC EXAMPLE)
 #################################################
 # CONNECTING TO DB
-# $db = new PDO('sqlite:db/contacts.db') or die("fail to connect db");
-#
+$db = new PDO('sqlite:db/contacts.db') or die("fail to connect db");
+
 # WRITING AND PREPPING QUERY
-# $insert_contacts_sql = 'INSERT INTO Contacts (FirstName, LastName, Email) VALUES (:firstname, :lastname, :email)';
-# $insert_contacts = $db->prepare($insert_contacts_sql);
-#
+$insert_contacts_sql = 'INSERT INTO contacts (FirstName, LastName, Email) VALUES (:firstname, :lastname, :email)';
+$insert_contacts = $db->prepare($insert_contacts_sql);
+
 # EXECUTING QUERY
-# $insert_contacts->execute(array(':firstname' => $firstname, ':lastname' => $lastname, ':email' => $email)) or die(print_r($db->errorInfo(), true));
+$insert_contacts->execute(array(':firstname' => $firstname, ':lastname' => $lastname, ':email' => $email)) or die(print_r($db->errorInfo(), true));
 #################################################
 
 # NOW POSTING FIELDS TO HATCHBUCK
