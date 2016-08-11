@@ -53,9 +53,18 @@ $fields = array(
 	"simple_spc" => urlencode($simple_spc)
 );
 
+var_dump($fields);
+
 # FORMATTING QUERY STRINGS IN URL FOR POST
-foreach($fields as $key=>$value) { $fields_string .= $key.'='.$value.'&'; }
+foreach ($fields as $key=>$value) { 
+	$fields_string .= $key.'='.$value.'&'; 
+}
 rtrim($fields_string, '&');
+
+echo '<br /><br />';
+var_dump($hb_submit_url);
+echo '<br /><br />';
+var_dump($fields_string);
 
 # INITIALIZE CONNECTION
 $ch = curl_init();
