@@ -27,7 +27,7 @@ $simple_spc = $_POST["simple_spc"];
 #################################################
 
 
-# POSTING DATA TO INTERNAL DATABASE VIA PDO (LOGIC EXAMPLE)
+# POSTING DATA TO INTERNAL DATABASE VIA PDO 
 #################################################
 # CONNECTING TO DB
 $db = new PDO('sqlite:db/contacts.db') or die("fail to connect db");
