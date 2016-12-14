@@ -10,6 +10,19 @@ $email = $_POST["q4_email"];
 $antispam = $_POST["website"];
 $simple_spc = $_POST["simple_spc"];
 
+# POSTING DATA TO INTERNAL DATABASE VIA PDO 
+#################################################
+# CONNECTING TO DB
+$db = new PDO('sqlite:db/contacts.db') or die("fail to connect db");
+
+# WRITING AND PREPPING QUERY
+$insert_contacts_sql = 'INSERT INTO contacts (FirstName, LastName, Email) VALUES (:firstname, :lastname, :email)';
+$insert_contacts = $db->prepare($insert_contacts_sql);
+
+# EXECUTING QUERY
+$insert_contacts->execute(array(':firstname' => $firstname, ':lastname' => $lastname, ':email' => $email)) or die(print_r($db->errorInfo(), true));
+#################################################
+
 # POSTING DATA TO ANOTHER API (LOGIC EXAMPLE)
 #################################################
 # $endpoint = "https://api.whatever.com/v1/add?key=MyApiKeyForOtherApp";
@@ -24,20 +37,6 @@ $simple_spc = $_POST["simple_spc"];
 #   "Content-Type: application/json",
 #   "Content-Length: " . strlen($json))
 # );
-#################################################
-
-
-# POSTING DATA TO INTERNAL DATABASE VIA PDO 
-#################################################
-# CONNECTING TO DB
-$db = new PDO('sqlite:db/contacts.db') or die("fail to connect db");
-
-# WRITING AND PREPPING QUERY
-$insert_contacts_sql = 'INSERT INTO contacts (FirstName, LastName, Email) VALUES (:firstname, :lastname, :email)';
-$insert_contacts = $db->prepare($insert_contacts_sql);
-
-# EXECUTING QUERY
-$insert_contacts->execute(array(':firstname' => $firstname, ':lastname' => $lastname, ':email' => $email)) or die(print_r($db->errorInfo(), true));
 #################################################
 
 # NOW POSTING FIELDS TO HATCHBUCK
